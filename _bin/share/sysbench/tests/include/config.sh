@@ -20,5 +20,5 @@
 
 export SBTEST_VERSION_STRING="sysbench 1.1.0-3ceba0b"
 export SBTEST_VERSION="1.1.0"
-export SBTEST_HAS_MYSQL=1
+export SBTEST_HAS_MYSQL=
 export SBTEST_HAS_PGSQL=
