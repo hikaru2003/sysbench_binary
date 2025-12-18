@@ -38,6 +38,7 @@ git clone ${GIT_REPO_URL}
 
 # Change ownership of the repository to the user
 USER_NAME=Morisaki
-chown -R $USER_NAME:$USER_NAME $(basename ${GIT_REPO_URL} .git)
+USER_GROUP=sslabko-fast-nw-
+chown -R $USER_NAME:$USER_GROUP $(basename ${GIT_REPO_URL} .git)
 
 echo "=== Startup script completed ==="
