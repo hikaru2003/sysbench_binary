@@ -5,7 +5,7 @@
 # 2. apt update
 # 3. Install packages
 
-INSTALL_PACKAGES="build-essential git htop"
+INSTALL_PACKAGES="build-essential git htop cmake"
 GIT_REPO_URL="https://github.com/hikaru2003/sysbench_binary.git"
 
 # set -e
