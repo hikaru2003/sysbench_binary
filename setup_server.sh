@@ -36,9 +36,18 @@ USER_HOME=/users/Morisaki
 cd $USER_HOME
 git clone ${GIT_REPO_URL}
 
+PCM_REPO=https://github.com/intel/pcm
+git clone --recursive ${PCM_REPO}
+cd pcm/
+mkdir build
+cd build
+cmake ..
+cmake --build .
+
 # Change ownership of the repository to the user
 USER_NAME=Morisaki
 USER_GROUP=sslabko-fast-nw-
 chown -R $USER_NAME:$USER_GROUP $(basename ${GIT_REPO_URL} .git)
+chown -R $USER_NAME:$USER_GROUP $(basename ${PCM_REPO} .git)
 
 echo "=== Startup script completed ==="
