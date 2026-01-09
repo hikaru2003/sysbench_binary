@@ -39,6 +39,8 @@ git clone ${GIT_REPO_URL}
 PCM_REPO=https://github.com/intel/pcm
 git clone --recursive ${PCM_REPO}
 cd pcm/
+git fetch --all --tags
+git checkout 
 mkdir build
 cd build
 cmake ..

@@ -1,0 +1,3 @@
+    events per second:  2476.88
+    events per second:  2482.32
+    events per second:  2484.71

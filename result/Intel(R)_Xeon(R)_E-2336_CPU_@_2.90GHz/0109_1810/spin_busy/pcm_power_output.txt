@@ -1,0 +1,19 @@
+
+ Intel(r) Performance Counter Monitor ($Format:%ci ID=%h$)
+
+ Power Monitoring Utility
+
+=====  Processor information  =====
+Linux arch_perfmon flag  : yes
+Hybrid processor         : no
+IBRS and IBPB supported  : yes
+STIBP supported          : yes
+Spec arch caps supported : yes
+Max CPUID level          : 27
+CPU family               : 6
+CPU model number         : 167
+PCM Error: can't open MSR handle for core 0 (No such file or directory)
+Try no-MSR mode by setting env variable PCM_NO_MSR=1
+Can not access CPUs Model Specific Registers (MSRs).
+execute 'modprobe msr' as root user, then execute pcm as root user.
+Unsupported processor model (0x6a7).
