@@ -10,6 +10,12 @@ PIDS=()
 
 # CPUモデル名を取得（ディレクトリ名に使用）
 CPU_MODEL=$(lscpu | grep "Model name" | awk '{sub(/^[^ ]+ +[^ ]+ +/, ""); print}' | tr ' ' '_')
+# "(xxx)" をそれぞれ独立して除去（中身にさらに()が無い想定）
+#  例: Intel(R)_Xeon(R)_E-2336_CPU_@_2.90GHz -> Intel_Xeon_E-2336_CPU_@_2.90GHz
+CPU_MODEL="${CPU_MODEL//\([^()]*\)/}"
+# 末尾の "_CPU_@_周波数" 部分を削除
+#  例: Intel_Xeon_E-2336_CPU_@_2.90GHz -> Intel_Xeon_E-2336
+CPU_MODEL="${CPU_MODEL%%_CPU_@_*}"
 
 # タイムスタンプを取得（全実行で共通）
 TIMESTAMP=$(date +%m%d_%H%M)
