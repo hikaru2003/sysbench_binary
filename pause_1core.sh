@@ -12,7 +12,7 @@ fi
 
 function test_ () {
         echo "sysbench with ${3} (core placement: ${1}, ${2})"
-        taskset -c $1 _bin/bin/sysbench cpu run --threads=1 --time=10 | grep "total number of events" | awk '{print $5}' &
+        taskset -c $1 _bin/bin/sysbench cpu run --threads=1 --time=60 | grep "events per second:" | awk '{print $4}' &
         wait_pid=$!
         taskset -c $2 $3 &
         kill_pid=$!

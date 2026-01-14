@@ -53,7 +53,7 @@ exec_test() {
     SYSBENCH_PIDS=()
 	echo "sysbench total number of events:"
     for (( i=HALF_CORES; i<TOTAL_CORES; i++ )); do
-        taskset -c $i _bin/bin/sysbench cpu run --threads=1 --time=10 | grep "total number of events" | awk '{print $5}' &
+        taskset -c $i _bin/bin/sysbench cpu run --threads=1 --time=60 | grep "events per second:" | awk '{print $4}' &
         pid=$!
         PIDS+=($pid)
         SYSBENCH_PIDS+=($pid)
