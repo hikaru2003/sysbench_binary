@@ -8,7 +8,7 @@ unsigned long long count = 0;
 
 void sigint_handler() {
 	stopped = 1;
-	fprintf(stderr, "count: %lld\n", count);
+	fprintf(stderr, "%lld\n", count);
 }
 
 int main(void)
@@ -18,8 +18,6 @@ int main(void)
 		if (stopped)
 			break;
 		count++;
-		if (count % 10 == 0) {
-			cpu_relax();
-		}
+		cpu_relax();
 	}
 }
