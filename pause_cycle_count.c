@@ -10,7 +10,7 @@ unsigned long long count = 0;
 int main(void)
 {
 	unsigned long long start, end;
-	int cnt = 1000000;
+	int cnt = 10000000;
 
 	start = __rdtsc();
 	for (int i = 0; i < cnt; i++) {
