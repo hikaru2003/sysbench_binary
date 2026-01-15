@@ -24,6 +24,8 @@ cleanup() {
 exec_test() {
     # この関数の引数でコマンドを1つ受け取る
     CMD1="$1"
+    # CMD1からファイル名のみを抽出（例: ./spin_pause -> spin_pause）
+    CMD1_BASENAME="${CMD1##*/}"
     # 実行権限チェック (CMD1)
     if [ ! -x "$CMD1" ]; then
         echo "Error: $CMD1 に実行権限がありません。"
@@ -51,19 +53,19 @@ exec_test() {
 
     # 4. 後半のコアでCMD2を実行
     SYSBENCH_PIDS=()
-	echo "sysbench total number of events:"
     for (( i=HALF_CORES; i<TOTAL_CORES; i++ )); do
         taskset -c $i _bin/bin/sysbench cpu run --threads=1 --time=10 | grep "events per second:" | awk '{print $4}' &
         pid=$!
         PIDS+=($pid)
         SYSBENCH_PIDS+=($pid)
     done
-	sudo /users/Morisaki/pcm/build/bin/pcm-power 1 -csv=power_log.csv
+	sudo /users/Morisaki/pcm/build/bin/pcm-power 1 -csv=power_log_${CMD1_BASENAME}.csv &
 	PCM_POWER_PID=$!
     # sysbenchの実行が終わるまで待機
+	echo "sysbench total number of events:"
     wait "${SYSBENCH_PIDS[@]}"
 	kill -INT $PCM_POWER_PID > /dev/null 2>&1
-	python3 grep_watts.py
+	python3 grep_watts.py power_log_${CMD1_BASENAME}.csv
     cleanup
 }
 
