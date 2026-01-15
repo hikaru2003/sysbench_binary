@@ -53,8 +53,9 @@ exec_test() {
 
     # 4. 後半のコアでCMD2を実行
     SYSBENCH_PIDS=()
+    # INSERT_YOUR_CODE
     for (( i=HALF_CORES; i<TOTAL_CORES; i++ )); do
-        taskset -c $i _bin/bin/sysbench cpu run --threads=1 --time=10 | grep "events per second:" | awk '{print $4}' &
+        taskset -c $i _bin/bin/sysbench cpu run --threads=1 --time=60 | grep "events per second:" | awk '{print $4}' &
         pid=$!
         PIDS+=($pid)
         SYSBENCH_PIDS+=($pid)
